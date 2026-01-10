@@ -6,10 +6,9 @@ using static WaterDrinkingLogger.Utils.ColumnNames;
 
 namespace WaterDrinkingLogger.Pages;
 
-public class DeleteModel(IConfiguration configuration) : PageModel
+public class UpdateModel(IConfiguration configuration) : PageModel
 {
     private readonly IConfiguration _configuration = configuration;
-
     [BindProperty]
     public WaterDrinkingModel WaterDrinking { get; set; }
 
@@ -36,14 +35,11 @@ public class DeleteModel(IConfiguration configuration) : PageModel
         return waterDrinkingRecord;
     }
 
-    public IActionResult OnPost(int id)
+    private IActionResult OnPost(int id)
     {
         using var connection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
         connection.Open();
         var tableCmd = connection.CreateCommand();
-        tableCmd.CommandText = "DELETE FROM drinking_water WHERE id = @id";
-        tableCmd.Parameters.Add(new SqlParameter("@id", id));
-        var reader = tableCmd.ExecuteNonQuery();
 
         return RedirectToPage("Index");
     }

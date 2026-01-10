@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Data.SqlClient;
 using WaterDrinkingLogger.Models;
+using static WaterDrinkingLogger.Utils.ColumnNames;
 
 namespace WaterDrinkingLogger.Pages;
 
@@ -27,9 +28,9 @@ public class IndexModel(IConfiguration configuration) : PageModel
             tableData.Add(
                     new WaterDrinkingModel
                     {
-                        Id = reader.GetInt32(0),
-                        Date = reader.GetDateTime(1),
-                        Quantity = reader.GetDouble(2)
+                        Id = reader.GetInt32((int)WaterDrinkingColumns.Id),
+                        Date = reader.GetDateTime((int)WaterDrinkingColumns.Date),
+                        Quantity = reader.GetDouble((int)WaterDrinkingColumns.Quantity)
                     }
                 );
         }
