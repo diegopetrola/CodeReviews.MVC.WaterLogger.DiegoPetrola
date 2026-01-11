@@ -41,9 +41,9 @@ public class DeleteModel(IConfiguration configuration) : PageModel
         using var connection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
         connection.Open();
         var tableCmd = connection.CreateCommand();
-        tableCmd.CommandText = "DELETE FROM drinking_water WHERE id = @id";
         tableCmd.Parameters.Add(new SqlParameter("@id", id));
-        var reader = tableCmd.ExecuteNonQuery();
+        tableCmd.CommandText = "DELETE FROM drinking_water WHERE id = @id";
+        tableCmd.ExecuteNonQuery();
 
         return RedirectToPage("Index");
     }

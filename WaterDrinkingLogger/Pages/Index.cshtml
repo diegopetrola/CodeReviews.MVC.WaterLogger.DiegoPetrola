@@ -4,36 +4,37 @@
     ViewData["Title"] = "Home page";
 }
 
-<table class="table" id="records">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Records[0].Date)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Records[0].Quantity)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach(var record in Model.Records)
-        {
-            <tr class="">
-                <td>
-                    @Html.DisplayFor(model => record.Date)
-                </td>
-                <td>
-                    @Html.DisplayFor(model => record.Quantity)
-                </td>
-                <td>
-                    <a class="btn btn-danger" asp-page="Delete" asp-route-id="@record.Id">Delete</a>
-                    <a class="btn btn-primary" asp-page="Update" asp-route-id="@record.Id">Edit</a>
-                </td>
+<body>
+    <table class="table bg-black" id="records">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Records[0].Date)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Records[0].Quantity)
+                </th>
+                <th></th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var record in Model.Records)
+            {
+                <tr class="">
+                    <td>
+                        @Html.DisplayFor(model => record.Date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => record.Quantity)
+                    </td>
+                    <td>
+                        <a class="btn btn-danger" asp-page="Delete" asp-route-id="@record.Id">Delete</a>
+                        <a class="btn btn-primary" asp-page="Update" asp-route-id="@record.Id">Edit</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 
-<a class="btn btn-success mt-1" asp-page="/Create" asp-area="">Add Record</a>
-
+    <a class="btn btn-success mt-1" asp-page="/Create" asp-area="">Add Record</a>
+</body>

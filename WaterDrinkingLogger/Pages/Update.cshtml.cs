@@ -35,11 +35,19 @@ public class UpdateModel(IConfiguration configuration) : PageModel
         return waterDrinkingRecord;
     }
 
-    private IActionResult OnPost(int id)
+    public IActionResult OnPost(int id)
     {
         using var connection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
         connection.Open();
         var tableCmd = connection.CreateCommand();
+        tableCmd.Parameters.Add(new SqlParameter("@id", id));
+        tableCmd.Parameters.Add(new SqlParameter("@date", WaterDrinking.Date));
+        tableCmd.Parameters.Add(new SqlParameter("@quantity", WaterDrinking.Quantity));
+        tableCmd.CommandText = """
+            UPDATE drinking_water 
+            SET date = @date, quantity = @quantity WHERE id = @id
+            """;
+        tableCmd.ExecuteNonQuery();
 
         return RedirectToPage("Index");
     }

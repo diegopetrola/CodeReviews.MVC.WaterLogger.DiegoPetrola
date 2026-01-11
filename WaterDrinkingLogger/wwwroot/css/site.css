@@ -1,3 +1,43 @@
+:root {
+    --primary: #3da9fc;
+    --accent: #FF6584;
+    --bg: #fffffe;
+    --text: #2D2D2D;
+    --button: #3da9fc;
+    --headline: #094067;
+    --subtle: #5f6c7b;
+    --button-text: #fffffe;
+    --tertiary: #ef4565;
+}
+
+.subtle{
+    color:var(--subtle);
+}
+
+h1, h2, h3, h4 {
+    color: var(--headline-color);
+}
+
+body {
+    background-color: var(--bg);
+/*    color: var(--text-color);*/
+}
+
+.btn {
+    border-radius: 8px;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 3px 9px rgba(108, 99, 255, 0.4);
+    transition: all 0.2s ease;
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    border: none;
+}
+
 html {
   font-size: 14px;
 }
